@@ -1,0 +1,201 @@
+clean_movie <- function(movie_file) {
+movie_fl <- read_excel(movie_file,sheet=1,na="NA")
+movie_fl <- movie_fl |>
+select(genres, average_rating, num_votes, which(christmas=='TRUE'))
+movie_fl$genres <- strsplit(movie_fl$genres, ",")
+return(movie_fl)
+}
+pacman::p_load(tidyverse, targets)
+tar_load(movie_file)
+clean_movie(movie_file)
+# Load packages required to define the pipeline:
+library(targets)
+library(tarchetypes)
+library(readxl)
+# Set target options:
+tar_option_set(
+packages = c("tidyverse", "gt"),
+format = "rds"
+)
+clean_movie <- function(movie_file) {
+movie_fl <- read_excel(movie_file,sheet=1,na="NA")
+movie_fl <- movie_fl |>
+select(genres, average_rating, num_votes, which(christmas=='TRUE'))
+movie_fl$genres <- strsplit(movie_fl$genres, ",")
+return(movie_fl)
+}
+pacman::p_load(tidyverse, targets)
+tar_load(movie_file)
+clean_movie(movie_file)
+tar_source()
+list(
+tar_file(movie_file, "raw-data/movies.xlsx"),
+tar_target(movie_clean,clean_movie(movie_file)),
+tar_target(movie_filtered,filter_movie(movie_clean)),
+tar_target(movie_scatter, plot_scatter(movie_filtered))
+# tar_target(mpg_tab, get_table(mpg_clean)),
+# tar_target(mpg_lm, fit_lm(mpg_clean)),
+# tar_quarto(readme, "readme.qmd")
+)
+tar_make()
+clean_movie <- function(movie_file) {
+movie_fl <- read_excel(movie_file,sheet=1,na="NA")
+movie_fl <- filter(movie_fl, movie_clean$christmas
+== "TRUE")
+movie_fl <- movie_fl |>
+select(genres, average_rating, num_votes)
+movie_fl$genres <- strsplit(movie_fl$genres, ",")
+return(movie_fl)
+}
+pacman::p_load(tidyverse, targets)
+tar_load(movie_file)
+clean_movie(movie_file)
+clean_movie <- function(movie_file) {
+movie_fl <- read_excel(movie_file,sheet=1,na="NA")
+movie_fl <- filter(movie_fl, movie_fl$christmas
+== "TRUE")
+movie_fl <- movie_fl |>
+select(genres, average_rating, num_votes)
+movie_fl$genres <- strsplit(movie_fl$genres, ",")
+return(movie_fl)
+}
+pacman::p_load(tidyverse, targets)
+tar_load(movie_file)
+clean_movie(movie_file)
+movie_file <- "raw-data/movies.xlsx"
+movie_fl <- read_excel(movie_file,sheet=1,na="NA")
+pacman::p_load(tidyverse)
+movie_file <- "raw-data/movies.xlsx"
+movie_fl <- read_excel(movie_file,sheet=1,na="NA")
+pacman::p_load(tidyverse,readxl)
+movie_file <- "raw-data/movies.xlsx"
+movie_fl <- read_excel(movie_file,sheet=1,na="NA")
+movie_fl <- filter(movie_fl, movie_fl$christmas
+== "TRUE")
+movie_fl <- movie_fl |>
+select(genres, average_rating, num_votes)
+movie_fl$genres <- strsplit(movie_fl$genres, ",")
+movie_fl %>% group_by(genres)
+# read and clean data
+movie_file <- "raw-data/movies.xlsx"
+movie_fl <- read_excel(movie_file,sheet=1,na="NA")
+movie_fl <- filter(movie_fl, movie_fl$christmas
+== "TRUE")
+movie_fl <- movie_fl |>
+select(genres, average_rating, num_votes)
+movie_fl %>% group_by(genres)
+movie_gp <- movie_fl %>% group_by(genres)
+View(movie_gp)
+View(movie_fl)
+View(movie_gp)
+?group_by
+group_by(movie_fl,genres)
+table(movie_fl,genres)
+table(movie_fl$genres)
+movie_list$genres <- strsplit(movie_fl$genres, ",")
+table(movie_fl$genres)
+pacman::p_load(tidyverse,readxl)
+# read and clean data
+movie_file <- "raw-data/movies.xlsx"
+movie_fl <- read_excel(movie_file,sheet=1,na="NA")
+movie_fl <- filter(movie_fl, movie_fl$christmas
+== "TRUE")
+movie_fl <- movie_fl |>
+select(primary_title
+,genres, average_rating, num_votes)
+movie_list$genres <- strsplit(movie_fl$genres, ",")
+table(movie_fl$genres)
+movie_list$genres <- strsplit(movie_fl$genres, ",")
+# read and clean data
+movie_file <- "raw-data/movies.xlsx"
+movie_fl <- read_excel(movie_file,sheet=1,na="NA")
+movie_fl <- filter(movie_fl, movie_fl$christmas
+== "TRUE")
+movie_fl <- movie_fl |>
+select(primary_title
+,genres, average_rating, num_votes)
+movie_list <- strsplit(with(movie_fl,genres), ",")
+table(movie_fl$genres)
+movie_n <- sapply(movie_list,length)
+data.frame(x1=rep(with(movie_fl,x1),movie_n),x2=unlist(movie_list))
+View(movie_list)
+movie_fl <- movie_fl |>
+select(primary_title
+,genres, average_rating, num_votes)
+genre_list <- strsplit(with(movie_fl,genres), ",")
+table(movie_fl$genres)
+genre_n <- sapply(genre_list,length)
+data.frame(primary_title=movie_fl$primary_title, genres=unlist(genre_list), average_rating=rep(with(movie_fl,avarage_rating),genre_n),num_votes=movie_fl$num_votes)
+data.frame(primary_title=movie_fl$primary_title, genres=unlist(genre_list), average_rating=rep(with(movie_fl,average_rating),genre_n),num_votes=movie_fl$num_votes)
+genre_n <- sapply(genre_list,length)
+data.frame(primary_title=movie_fl$primary_title, genres=unlist(genre_list), average_rating=rep(with(movie_fl,average_rating),genre_n),num_votes==rep(with(movie_fl,num_votes),genre_n))
+View(movie_fl)
+movie_fl <- read_excel(movie_file,sheet=1,na="NA")
+movie_fl <- filter(movie_fl, movie_fl$christmas
+== "TRUE")
+movie_fl <- movie_fl |>
+select(primary_title
+,genres, average_rating, num_votes)
+genre_list <- strsplit(with(movie_fl,genres), ",")
+table(movie_fl$genres)
+genre_n <- sapply(genre_list,length)
+data.frame(primary_title=movie_fl$primary_title, genres=unlist(genre_list), average_rating=rep(with(movie_fl,average_rating),genre_n),num_votes==rep(with(movie_fl,num_votes),genre_n))
+data.frame(primary_title=movie_fl$primary_title, genres=unlist(genre_list), average_rating=rep(with(movie_fl,average_rating),genre_n),num_votes=rep(with(movie_fl,num_votes),genre_n))
+genre_n <- sapply(genre_list,length)
+data.frame(primary_title=rep(with(movie_fl,primary_title),genre_n), genres=unlist(genre_list), average_rating=rep(with(movie_fl,average_rating),genre_n),num_votes=rep(with(movie_fl,num_votes),genre_n))
+movie_sp <- data.frame(primary_title=rep(with(movie_fl,primary_title),genre_n), genres=unlist(genre_list), average_rating=rep(with(movie_fl,average_rating),genre_n),num_votes=rep(with(movie_fl,num_votes),genre_n))
+# mean
+aggregate(movie_sp$average_rating, by=list(type=movie_sp$genres),mean)
+# mean
+table(movie_sp$genres)
+Mean <- aggregate(movie_sp$average_rating, by=list(type=movie_sp$genres),mean)
+Mean <- sort(Mean$x)
+# mean
+table(movie_sp$genres)
+Mean <- aggregate(movie_sp$average_rating, by=list(type=movie_sp$genres),mean)
+Mean$x <- sort(Mean$x)
+View(Mean)
+ggplot()+
+geom_histogram(Mean,aes(x))
+ggplot()+
+geom_histogram(Mean,aes(x=x))
+View(Mean)
+# mean
+table(movie_sp$genres)
+Mean <- aggregate(movie_sp$average_rating, by=list(type=movie_sp$genres),mean)
+Mean$x <- sort(Mean$x)
+names(Mean) <- c("genres","average_rating")
+ggplot(Mean)+
+geom_histogram(aes(x=genres,y=average_rating))
+View(Mean)
+ggplot(Mean)+
+geom_point(aes(x=genres,y=average_rating))
+View(Mean)
+Mean[which(Mean$average_rating==max(Mean$average_rating))]
+max(Mean$average_rating)
+Mean$average_rating==max(Mean$average_rating)
+which(Mean$average_rating==max(Mean$average_rating))
+Mean[,which(Mean$average_rating==max(Mean$average_rating))]
+Mean[which(Mean$average_rating==max(Mean$average_rating)),]
+View(movie_sp)
+View(Mean)
+# medain
+Medain <- aggregate(movie_sp$average_rating, by=list(type=movie_sp$genres),medain)
+# median
+Median <- aggregate(movie_sp$average_rating, by=list(type=movie_sp$genres),median)
+Median$x <- sort(Median$x)
+names(Median) <- c("genres","average_rating")
+ggplot(Median)+
+geom_point(aes(x=genres,y=average_rating))
+View(Median)
+Median[which(Median$average_rating==max(Median$average_rating)),] # get the max mean
+View(Mean)
+View(Median)
+#
+Mean$genres==Median$genres
+# filter
+movie_sp[which(movie_sp$genres=="Western"),]
+Mean <- aggregate(movie_sp$average_rating, by=list(type=movie_sp$genres),mean)
+View(Mean)
+View(movie_sp)
+View(movie_sp)
